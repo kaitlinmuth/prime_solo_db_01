@@ -69,8 +69,8 @@ passport.use('local', new localStrategy({
       passReqToCallback : true,
       usernameField: 'username',
     },
-    function(username, password, done){
-      User.findOne({ username: username.body.username }, function(err, user) {
+    function(req, username, password, done){
+      User.findOne({ username: username }, function(err, user) {
         if (err) throw err;
         if (!user)
           return done(null, false, { message: 'Incorrect username.' });
